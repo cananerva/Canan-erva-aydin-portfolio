@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canan Erva Aydın | Portfolyo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: Rose-600 Accents with Slate-50 Background (Modern & Minimalist Pink) -->
+    <!-- Application Structure Plan: 
+        1. Navbar: Hamburger menu on the right, Name on the left.
+        2. Side Drawer: Slide-out menu for easy navigation.
+        3. Intro: Direct professional summary ("3. sınıf öğrencisiyim" context).
+        4. Stats: Success metrics (+2 Degrees, +3 Big Projects).
+        5. Experience: CV items including 2025 Internship & Educator Mentor.
+        6. Clean Modals: White backgrounds for expanded reading comfort.
+        7. Contact: Grouped at the bottom for high visibility.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: auto;
+            height: 300px;
+        }
+
+        #mobile-drawer {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rose-gradient-ball {
+            background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+        }
+
+        .social-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            border-radius: 14px;
+            color: #be123c;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .social-link-btn:hover {
+            background: #be123c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-meter {
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .language-meter-fill {
+            height: 100%;
+            background: #e11d48;
+            border-radius: 10px;
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(225, 29, 72, 0.12);
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.05);
+        }
+    </style>
+</head>
+<body class="pt-24">
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-header h-20 flex items-center justify-between px-6 md:px-12">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl rose-gradient-ball flex items-center justify-center text-white font-bold shadow-md">CA</div>
+            <span class="font-extrabold text-slate-800 tracking-tight text-lg">Canan Erva Aydın</span>
+        </div>
+        <button id="drawer-open" class="p-2 text-rose-600 text-3xl focus:outline-none">
+            &#9776;
+        </button>
+    </nav>
+
+    <!-- Navigation Drawer -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-drawer" class="fixed top-0 right-0 h-full w-80 bg-white z-[70] shadow-2xl transform translate-x-full flex flex-col">
+        <div class="p-8 flex justify-between items-center border-b border-rose-50">
+            <span class="font-black text-rose-600 text-xl tracking-tighter uppercase">Menü</span>
+            <button id="drawer-close" class="text-3xl text-slate-400 hover:text-rose-600 transition">&times;</button>
+        </div>
+        <nav class="flex-1 p-8 space-y-6">
+            <a href="#giris" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Hakkımda</a>
+            <a href="#deneyim" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Deneyim</a>
+            <a href="#projeler" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Dereceler & Projeler</a>
+            <a href="#diller" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Diller</a>
+            <a href="#organizasyon" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Organizasyonlar</a>
+            <a href="#analiz" class="drawer-link block text-lg font-bold text-slate-600 hover:text-rose-600 transition">Yetkinlik Analizi</a>
+        </nav>
+        <div class="p-8 border-t border-rose-50 text-center">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Canan Erva Aydın &bull; 2026</p>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="max-w-5xl mx-auto px-6 lg:px-12 py-12">
+
+        <!-- Hakkımda Section -->
+        <section id="giris" class="mb-24 scroll-mt-32">
+            <div class="max-w-3xl">
+                <span class="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-700 text-[10px] font-black mb-6 uppercase tracking-widest">Hakkımda</span>
+                <p class="text-xl md:text-2xl text-slate-600 leading-relaxed font-medium">
+                    İstanbul Sabahattin Zaim Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisiyim. Yapay zeka ve veri bilimi odaklı çalışmalarımı, Idea4travel ve Neova Sigorta gibi platformlarda kazandığımız derecelerle projelere dönüştürerek sektörel deneyim kazanıyorum. 
+                    Akademik eğitimimin yanı sıra, T3 Vakfı’ndaki mentörlük görevim ve öğrenci kulüplerindeki takım yönetimi tecrübelerimle hem teknik hem de yönetsel süreçlerde aktif rol alıyorum. Proje odaklı çalışma disiplinimle, karmaşık problemleri yapay zeka çözümleriyle optimize etmeye odaklanıyorum.
+                </p>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="grid grid-cols-2 gap-6 mt-12">
+                <div class="bg-white p-8 rounded-[2rem] border border-rose-100 shadow-sm text-center hover-lift">
+                    <h4 class="text-4xl font-black text-rose-600 mb-1">Derece +2</h4>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Ulusal Başarılar</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2rem] border border-rose-100 shadow-sm text-center hover-lift">
+                    <h4 class="text-4xl font-black text-slate-800 mb-1">Büyük Proje +3</h4>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Ar-Ge & Endüstriyel</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deneyim Section -->
+        <section id="deneyim" class="mb-24 scroll-mt-32">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Deneyim</h2>
+                <div class="h-1 flex-1 bg-rose-100 rounded-full"></div>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Internship 2025 -->
+                <div class="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-sm relative overflow-hidden hover-lift">
+                    <div class="absolute top-8 right-8">
+                        <button onclick="toggleMenu('staj-drop')" class="p-2 text-slate-300 hover:text-rose-600 text-xl font-bold transition">
+                            &#8942;
+                        </button>
+                        <div id="staj-drop" class="dropdown-menu hidden absolute right-0 top-full bg-white shadow-2xl border border-rose-100 rounded-2xl p-2 w-48 z-10">
+                            <button onclick="openModal('staj-modal')" class="w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-rose-50 rounded-xl">Detayları Gör</button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-16 h-16 rounded-2xl bg-rose-50 flex-shrink-0 flex items-center justify-center text-3xl text-rose-600 shadow-inner">
+                            &#128187;
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-slate-900">Veri Bilimi Stajyeri</h3>
+                            <p class="text-rose-600 font-bold text-sm uppercase tracking-tight">Endüstriyel Veri Deneyimi (2025)</p>
+                            <p class="text-slate-600 text-sm mt-4 leading-relaxed">
+                                Gerçek dünya veri setleri üzerinde keşifçi veri analizi (EDA), veri temizleme ve makine öğrenmesi modellerinin performans optimizasyonu süreçlerini bizzat yürüttüm. Python ve SQL kullanarak veriden stratejik içgörüler elde ettim.
+                            </p>
+                            <button onclick="openModal('staj-modal')" class="mt-6 text-rose-600 font-black text-xs uppercase hover:underline inline-flex items-center gap-2">
+                                Detaylı Analiz <span>&#8594;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T3 Mentor -->
+                <div class="bg-white rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-sm hover-lift">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-900 flex-shrink-0 flex items-center justify-center text-3xl text-white shadow-lg">
+                            🚀
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-slate-900">Eğitmen Mentör</h3>
+                            <p class="text-rose-600 font-bold text-sm uppercase tracking-tight">T3 Vakfı (Türkiye Teknoloji Takımı)</p>
+                            <p class="text-slate-600 text-sm mt-4 leading-relaxed">
+                                T3 Vakfı bünyesindeki genç yeteneklere algoritma tasarımı ve yazılım temelleri konularında rehberlik sağlıyorum. Mühendislik vizyonu ve proje geliştirme süreçlerinde yol göstererek teknoloji ekosistemine katkıda bulunuyorum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projeler" class="mb-24 scroll-mt-32">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Dereceler & Projeler</h2>
+                <div class="h-1 flex-1 bg-rose-100 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- SmartMeal -->
+                <div class="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm hover-lift relative group">
+                    <div class="absolute top-8 right-8">
+                        <button onclick="toggleMenu('p1-drop')" class="p-2 text-slate-300 hover:text-rose-600 text-xl font-bold transition">
+                            &#8942;
+                        </button>
+                        <div id="p1-drop" class="dropdown-menu hidden absolute right-0 top-full bg-white shadow-2xl border border-rose-100 rounded-2xl p-2 w-48 z-10">
+                            <button onclick="openModal('p1-modal')" class="w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-rose-50 rounded-xl">Ödül Özeti</button>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-rose-100 text-rose-700 text-[10px] font-black rounded-full uppercase mb-4 inline-block tracking-tighter">Birincilik Ödülü</span>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">SmartMeal (Idea4travel)</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                        THY, Genç MÜSİAD ve Üretken Akademi ortaklığında düzenlenen Idea4travel yarışmasında sürdürülebilirliği artıran AI projemizle birinci olduk. Projemiz güncel olarak THY yurt dışı uçuşlarında aktif uygulanmaktadır.
+                    </p>
+                    <button onclick="openModal('p1-modal')" class="text-rose-600 font-bold text-xs uppercase hover:underline">Süreç Analizi &#8594;</button>
+                </div>
+
+                <!-- Revolution -->
+                <div class="bg-white rounded-[2.5rem] border border-slate-100 p-8 shadow-sm hover-lift relative group">
+                    <div class="absolute top-8 right-8">
+                        <button onclick="toggleMenu('p2-drop')" class="p-2 text-slate-300 hover:text-rose-600 text-xl font-bold transition">
+                            &#8942;
+                        </button>
+                        <div id="p2-drop" class="dropdown-menu hidden absolute right-0 top-full bg-white shadow-2xl border border-rose-100 rounded-2xl p-2 w-48 z-10">
+                            <button onclick="openModal('p2-modal')" class="w-full text-left px-4 py-2 text-sm text-slate-600 hover:bg-rose-50 rounded-xl">Sunum Detayı</button>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-black rounded-full uppercase mb-4 inline-block tracking-tighter">Finalist</span>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Revolution (Neova Sigorta)</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                        Sigortacılıkta prim tahsilat verimsizliklerini azaltan yapay zeka destekli platformumuzla finalist olduk. Projemizi Neova Sigorta'nın İstanbul Teknopark'taki genel merkezinde jüriye sunduk.
+                    </p>
+                    <button onclick="openModal('p2-modal')" class="text-rose-600 font-bold text-xs uppercase hover:underline">Sunum Analizi &#8594;</button>
+                </div>
+
+                <!-- BAP 100 -->
+                <div class="md:col-span-2 bg-white rounded-[2.5rem] border border-slate-100 p-10 shadow-sm flex flex-col md:flex-row gap-8 items-center hover-lift">
+                    <div class="w-20 h-20 rounded-2xl bg-rose-50 flex-shrink-0 flex items-center justify-center text-4xl text-rose-600 shadow-inner">
+                        &#128641;
+                    </div>
+                    <div class="flex-1">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-[10px] font-black rounded-full uppercase mb-3 inline-block tracking-widest">Resmi Fonlanan Ar-Ge</span>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Otonom Yönelimli İHA ile Yangın Tespiti</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Derin öğrenme kullanarak otonom navigasyon sistemleriyle uyumlu anlık yangın tespiti gerçekleştiren drone tasarımı üzerinde çalışıyorum. Çalışmamız BAP-100 kapsamında resmi olarak fonlanmaktadır.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section id="diller" class="mb-24 scroll-mt-32">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Diller</h2>
+                <div class="h-1 flex-1 bg-rose-100 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-50 shadow-sm flex items-center gap-6">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-50 flex items-center justify-center font-bold text-rose-600 text-xl shadow-inner">TR</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-end mb-3">
+                            <span class="font-bold text-slate-800">Türkçe</span>
+                            <span class="text-[10px] font-bold text-rose-500 uppercase tracking-widest">Anadil</span>
+                        </div>
+                        <div class="language-meter"><div class="language-meter-fill w-full"></div></div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-50 shadow-sm flex items-center gap-6">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-50 flex items-center justify-center font-bold text-rose-600 text-xl shadow-inner">EN</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-end mb-3">
+                            <span class="font-bold text-slate-800">İngilizce</span>
+                            <span class="text-[10px] font-bold text-rose-500 uppercase tracking-widest">B2 Seviyesi</span>
+                        </div>
+                        <div class="language-meter"><div class="language-meter-fill w-[80%]"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership / Past Organizations -->
+        <section id="organizasyon" class="mb-24 scroll-mt-32">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Organizasyonlar</h2>
+                <div class="h-1 flex-1 bg-rose-100 rounded-full"></div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-10 rounded-[2.5rem] border border-slate-50 shadow-sm hover-lift">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900">IEEE IZU Öğrenci Kolu</h3>
+                            <p class="text-rose-600 font-bold text-xs mt-1 uppercase tracking-widest">Yönetim Kurulu Deneyimi</p>
+                        </div>
+                        <span class="text-[10px] font-bold text-slate-400 bg-slate-50 px-4 py-2 rounded-full uppercase">10/2021 - 06/2025</span>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed italic border-l-4 border-rose-200 pl-6 mb-6">
+                        WIE ve Tanıtım Tasarım komitelerinde başkanlık ve başkan yardımcılığı görevlerini yürüttüm. Sosyal medya yöneticiliği rolümle kulübün tüm dijital kimliğini ve tüm PR süreçlerini koordine ettim.
+                    </p>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        WIE Summit başta olmak üzere pek çok teknik zirvenin organizasyon süreçlerini yönettim. Sosyal sorumluluk projeleri kapsamında teknik eğitimler verdim ve webinarlarda moderatörlük yaptım.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-50 shadow-sm flex justify-between items-center transition hover:shadow-lg">
+                    <div class="flex items-center gap-4">
+                        <div class="w-3 h-3 rounded-full rose-gradient-ball shadow-sm"></div>
+                        <h3 class="font-bold text-slate-800">Hür Medeniyet Öğrenci Kulübü - Yönetim Kurulu Üyesi</h3>
+                    </div>
+                    <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest">2021 - 2023</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Radar Analysis -->
+        <section id="analiz" class="mb-24 scroll-mt-32">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Yetkinlik Analizi</h2>
+                <div class="h-1 flex-1 bg-rose-100 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-[3rem] p-10 md:p-16 border border-slate-100 shadow-sm flex flex-col lg:flex-row items-center gap-16 hover-lift">
+                <div class="chart-container">
+                    <canvas id="skillsRadar"></canvas>
+                </div>
+                <div class="flex-1 space-y-10">
+                    <h4 class="text-2xl font-bold text-slate-900 leading-tight">Teknik ve Sosyal Yetkinlik Dengesi</h4>
+                    <p class="text-slate-600 leading-relaxed">
+                        Yazılım geliştirme ve veri analizi yetkinliklerimi, organizasyonel rollerden kazandığım yönetim ve iletişim becerileriyle harmanlıyorum. Karmaşık verileri fayda sağlayan teknolojik çözümlere dönüştürmek önceliğim.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-rose-50 p-8 rounded-[2rem] text-center shadow-inner">
+                            <span class="block text-4xl font-black text-rose-600">95%</span>
+                            <span class="text-[10px] text-slate-500 font-black uppercase tracking-widest mt-2 block">İletişim & PR</span>
+                        </div>
+                        <div class="bg-slate-50 p-8 rounded-[2rem] text-center shadow-inner">
+                            <span class="block text-4xl font-black text-slate-800">90%</span>
+                            <span class="text-[10px] text-slate-500 font-black uppercase tracking-widest mt-2 block">Veri Analizi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Global Contact Area -->
+        <footer class="mt-32 pt-16 border-t border-rose-100">
+            <div class="flex flex-col items-center text-center space-y-10">
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://www.linkedin.com/in/canan-erva-aydın" target="_blank" class="social-link-btn">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/cananerva" target="_blank" class="social-link-btn">
+                        GitHub
+                    </a>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-xl font-bold text-slate-700 tracking-tight">cananervaaydin@gmail.com</p>
+                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em]">Canan Erva Aydın &bull; Kariyer Raporu &bull; 2026</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal Framework (White Background focus) -->
+    <div id="modal-container" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+        <div class="w-full max-w-2xl bg-white shadow-2xl overflow-hidden animate-fade-in border border-rose-100 rounded-[2.5rem]">
+            <div class="p-10 border-b border-rose-50 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-black text-slate-900">Detaylar</h3>
+                <button onclick="closeModal()" class="p-2 text-slate-400 hover:text-rose-600 transition text-4xl leading-none">&times;</button>
+            </div>
+            <div id="modal-content" class="p-12 text-slate-600 text-base leading-relaxed max-h-[60vh] overflow-y-auto">
+                <!-- Content -->
+            </div>
+            <div class="p-10 border-t border-rose-50 flex justify-end">
+                <button onclick="closeModal()" class="px-12 py-4 bg-rose-600 text-white font-black rounded-2xl text-xs hover:bg-rose-700 transition shadow-lg uppercase tracking-widest">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Drawer Toggle Logic
+        const drawerOpen = document.getElementById('drawer-open');
+        const drawerClose = document.getElementById('drawer-close');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+        const drawerLinks = document.querySelectorAll('.drawer-link');
+
+        function openDrawer() {
+            mobileDrawer.classList.remove('translate-x-full');
+            drawerOverlay.classList.remove('hidden');
+            setTimeout(() => drawerOverlay.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            mobileDrawer.classList.add('translate-x-full');
+            drawerOverlay.classList.remove('opacity-100');
+            setTimeout(() => drawerOverlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        drawerOpen.addEventListener('click', openDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+        drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+        // Quick Menu Toggle (Dropdowns)
+        function toggleMenu(id) {
+            const el = document.getElementById(id);
+            const isHidden = el.classList.contains('hidden');
+            document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.add('hidden'));
+            if (isHidden) el.classList.remove('hidden');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('button')) {
+                document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.add('hidden'));
+            }
+        }
+
+        // Modal Content Database
+        const modalData = {
+            'staj-modal': {
+                title: 'Veri Bilimi Stajı - 2025 Analizi',
+                content: `
+                    <p class="mb-6"><strong>Dönem:</strong> 2025 Yaz</p>
+                    <p class="mb-6"><strong>Teknik Kapsam:</strong> Büyük ölçekli veri setleri üzerinde makine öğrenmesi uygulamaları.</p>
+                    <ul class="list-disc ml-6 space-y-4">
+                        <li>Pandas ve NumPy kütüphaneleriyle veri manipülasyonu ve ön işleme çalışmaları yaptım.</li>
+                        <li>Seaborn ve Matplotlib kullanarak karmaşık verilerin görselleştirilmesini koordine ettim.</li>
+                        <li>Model seçim süreçlerinde regresyon ve sınıflandırma algoritmalarını test ettim.</li>
+                        <li>SQL ile ilişkisel veritabanı sorgulama süreçlerini yürüttüm.</li>
+                    </ul>
+                `
+            },
+            'p1-modal': {
+                title: 'Idea4travel Ödül Özeti',
+                content: `
+                    <p class="mb-6"><strong>Düzenleyenler:</strong> THY, Genç MÜSİAD, Üretken Akademi</p>
+                    <p class="mb-6"><strong>Başarı:</strong> Birincilik Ödülü</p>
+                    <p class="mb-6"><strong>Proje:</strong> SmartMeal</p>
+                    <p>Havacılıkta sürdürülebilirliği odak noktasına alan SmartMeal projemizle birincilik kazandık. AI tabanlı çözümümüzle uçuşlardaki ikram operasyonlarını analiz ederek israfı minimuma indirmeyi hedefledik. Proje şu an THY'nin yurt dışı ağında uygulanmaktadır.</p>
+                `
+            },
+            'p2-modal': {
+                title: 'Neova Sigorta Ideathon: Revolution',
+                content: `
+                    <p class="mb-6"><strong>Kapsam:</strong> Sigortacılıkta prim tahsilat verimsizlikliği üzerine AI çözümü.</p>
+                    <p class="mb-6"><strong>Sunum Mekanı:</strong> İstanbul Teknopark Genel Merkezi</p>
+                    <p>Prim tahsilat süreçlerini optimize eden yapay zeka destekli platformumuzu geliştirerek finalist seçildik. Projemizi Neova Sigorta jürisine sunduk ve sigortacılık operasyonlarında dijital dönüşüm fırsatlarını analiz ettik.</p>
+                `
+            }
+        };
+
+        function openModal(key) {
+            const m = modalData[key];
+            document.getElementById('modal-title').innerText = m.title;
+            document.getElementById('modal-content').innerHTML = m.content;
+            document.getElementById('modal-container').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Radar Chart Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('skillsRadar').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Veri Analizi', 'Liderlik', 'Mentörlük', 'Deep Learning', 'İletişim & PR', 'Python/SQL'],
+                    datasets: [{
+                        label: 'Yetkinlik Seviyem',
+                        data: [90, 95, 85, 80, 95, 88],
+                        backgroundColor: 'rgba(225, 29, 72, 0.15)',
+                        borderColor: '#e11d48',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#e11d48',
+                        pointBorderWidth: 4,
+                        pointRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: { display: false },
+                            grid: { color: '#f1f5f9', lineWidth: 2 },
+                            pointLabels: {
+                                font: { family: "'Plus Jakarta Sans'", size: 12, weight: '700' },
+                                color: '#475569'
+                            }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
